@@ -27,6 +27,35 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      body: ListView(
+        children:<Widget>[
+          Padding(
+            padding: EdgeInsets.all(20.0),
+                      child: TextField(
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(15.0),
+                fillColor: Colors.white,
+                filled: true,
+                border: OutlineInputBorder(borderRadius:BorderRadius.circular(30.0),
+                borderSide: BorderSide(width: 0.5),
+                ),
+                enabledBorder: OutlineInputBorder(borderRadius:BorderRadius.circular(30.0),
+                borderSide: BorderSide(width: 0.5,color: Theme.of(context).primaryColor),
+                ),
+                hintText: 'Search Food or Resturant',
+                prefixIcon: Icon(Icons.search,//adding of icon in the text Field
+                size: 30.0,
+                ),
+                suffixIcon: IconButton(icon: Icon(Icons.clear), 
+                onPressed: (){
+
+                },
+                )
+              )
+            ),
+          )
+        ]
+      ),
     );
   }
 }
