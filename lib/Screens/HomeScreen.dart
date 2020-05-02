@@ -3,6 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_food_delivery_ui/data/data.dart';
+import 'package:flutter_food_delivery_ui/widgets/NearBy_resturant.dart';
+import 'package:flutter_food_delivery_ui/widgets/recentOrders.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -28,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: ListView(
+      physics: BouncingScrollPhysics(),
         children:<Widget>[
           Padding(
             padding: EdgeInsets.all(20.0),
@@ -53,7 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               )
             ),
-          )
+          ),
+          RecentOrders(),
+          Nearby_Resturants()
         ]
       ),
     );

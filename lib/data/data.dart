@@ -72,7 +72,7 @@ final currentUser = new User(
   name: 'Kenny',
   orders: [
     Order(
-      date: 'Nov 10, 2019',
+      date: 'Nov 10, 2020',
       food: _steak,
       restaurant: _restaurant2,
       quantity: 1,
@@ -84,7 +84,7 @@ final currentUser = new User(
       quantity: 3,
     ),
     Order(
-      date: 'Nov 5, 2019',
+      date: 'Nov 5, 2020',
       food: _burrito,
       restaurant: _restaurant1,
       quantity: 2,
