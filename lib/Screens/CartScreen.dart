@@ -111,6 +111,12 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    double totalPrice = 0;
+    currentUser.cart.forEach(
+      (Order order) => totalPrice += order.quantity * order.food.price,
+    ); 
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -119,9 +125,59 @@ class _CartScreenState extends State<CartScreen> {
         ),
       ),
       body: ListView.separated(
-          itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: (BuildContext context, int index) {
+                    if(index<currentUser.cart.length){
             Order order = currentUser.cart[index];
             return _buildCartItem(order);
+            }
+            return Padding(
+              padding: EdgeInsets.all(20.0),
+                          child: Column(
+                children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Estimated delivery time',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text('25min',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w600
+                        ) ,),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Total Cost',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text('\$${totalPrice.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          color: Colors.greenAccent[700],
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w600
+                        ) ,),
+                      ],
+                    ),
+                    SizedBox(height: 80.0,)
+                ],
+              ),
+
+            );
+            
           },
           separatorBuilder: (BuildContext context, int index) {
             return Divider(
@@ -129,7 +185,21 @@ class _CartScreenState extends State<CartScreen> {
               color: Colors.grey,
             );
           },
-          itemCount: currentUser.cart.length),
+          itemCount: currentUser.cart.length +1),
+          
+          bottomSheet: ClipRRect(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(15.0),topRight: Radius.circular(15.0)),
+                      child: Container(
+              height: 80.0,
+              width: MediaQuery.of(context).size.width,
+              color: Theme.of(context).primaryColor,
+              child: Center(
+                child: FlatButton
+                (child: Text('CHECKOUT',style:TextStyle(fontSize: 30.0,color: Colors.white,fontWeight: FontWeight.bold,letterSpacing: 2.0)),
+                 onPressed: () {},),
+              )
+            ),
+          ),
     );
   }
 }
